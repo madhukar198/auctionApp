@@ -55,9 +55,9 @@ exports.addSaleItem =  async({name, description, fixedPrice,  totalQuantity, id}
 exports.deleteItemById=  async({item_id, id})=>{
     try {
         const { Item } = await initModels();
-        const item = await Item.find({item_id});
+        const item = await Item.findOne({_id:item_id});
 
-        if(item.listedBy.toString() === id){
+        if(item && item.listedBy.toString() === id){
           item.isDeleted = true;
           await item.save();
           return item

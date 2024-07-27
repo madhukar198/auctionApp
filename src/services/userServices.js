@@ -12,6 +12,7 @@ exports.createUser =  async({email, password, mobile})=>{
         let saveUser = await user.save();
         return saveUser;
     } catch (error) {
+        console.log(error);
         throw new Error(error) 
     }
 
@@ -29,8 +30,6 @@ exports.getUser =  async({email, password, mobile})=>{
             user = await User.findOne({mobile});
         }
 
-        console.log("user-->",user);
-        console.log("match password-->",await user.matchPassword(password));
         if (user && (await user.matchPassword(password))) {
           
             return user
