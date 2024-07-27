@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const itemSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  startingBid: { type: Number, required: true },
+  startingBid: { type: Number},
   currentBid: { type: Number, default: 0 },
   highestBidder: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  auctionEnd: { type: Date, required: true },
+  auctionEnd: { type: Date },
   listedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   itemType:{		
   type: String,
@@ -15,6 +15,7 @@ const itemSchema = new mongoose.Schema({
   },
   fixedPrice: { type: Number },
   isSold: { type: Boolean, default: false },
+  isDeleted: { type: Boolean, default: false },
 });
 
 module.exports = itemSchema;

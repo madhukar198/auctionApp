@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const itemSchema = new mongoose.Schema({
+const inventorySchema = new mongoose.Schema({
     item: { type: mongoose.Schema.Types.ObjectId, ref: 'Item', required: true },
   totalQuantity: { type: Number, required: true },
-  quantityLeft: { type: Number, default: this.totalQuantity },
+  quantityBooked: { type: Number, default: 0 },
 }); 
 
-module.exports = itemSchema;
+module.exports = inventorySchema;

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const bidSchema = new mongoose.Schema({
+const bookSchema = new mongoose.Schema({
   item: { type: mongoose.Schema.Types.ObjectId, ref: 'Item', required: true },
   amount: { type: Number, required: true },
-  bidder: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
-module.exports = bidSchema;
+module.exports = bookSchema;

@@ -2,7 +2,6 @@ const initModels = require('../models/index');
 const { connectUserDB, connectAuctionDB } = require('../../config/db');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-// const { Error } = require('mongoose');
 
 
 

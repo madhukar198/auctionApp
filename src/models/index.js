@@ -8,6 +8,7 @@ const initModels = async () => {
   const UserSchema = require('./User');
   const ItemSchema = require('./Item');
   const BidSchema = require('./Bid');
+  const bookSchema = require('./book');
   const InventorySchema = require('./Inventory');
 
   // Register models
@@ -15,9 +16,10 @@ const initModels = async () => {
   const Item = auctionDB.model('Item', ItemSchema);
   const Inventory = auctionDB.model('Inventory', InventorySchema);
   const Bid = biddingDB.model('Bid', BidSchema);
+  const book = biddingDB.model('bookSchema', bookSchema);
 
 //   auctionDB.model('User', UserSchema);
-  return { User, Item, Bid , Inventory};
+  return { User, Item, Bid, Inventory, book};
 };
 
 module.exports = initModels;
