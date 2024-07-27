@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const { connectUserDB, connectAuctionDB } = require('./config/db');
+const { connectUserDB, connectAuctionDB, connectBidersDB } = require('./config/db');
 const userRoutes = require('./src/routes/userRoutes');
 const auctionRoutes = require('./src/routes/auctionRoutes');
 const biddingRoutes = require('./src/routes/biddingRouter');
@@ -13,6 +13,7 @@ const errorHandler = require("./src/utils/errorController.js")
 dotenv.config();
 connectUserDB();
 connectAuctionDB();
+connectBidersDB()
 
 const app = express();
 app.use(cors());

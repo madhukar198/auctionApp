@@ -21,7 +21,14 @@ exports.createUser =  async({email, password, mobile})=>{
 exports.getUser =  async({email, password, mobile})=>{
     try {
         const { User } = await initModels();
-        const user = await User.findOne({$or:[{ email }, {mobile}]});
+        console.log("email, mobile",email, mobile);
+        let user ;
+        if(email){
+            user = await User.findOne({ email});
+        }else{
+            user = await User.findOne({mobile});
+        }
+
         console.log("user-->",user);
         console.log("match password-->",await user.matchPassword(password));
         if (user && (await user.matchPassword(password))) {

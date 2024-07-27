@@ -8,6 +8,7 @@ const itemSchema = new mongoose.Schema({
   highestBidder: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   auctionEnd: { type: Date },
   listedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  inventory: { type: mongoose.Schema.Types.ObjectId, ref: 'Inventory'},
   itemType:{		
   type: String,
 		enum: ['auction', 'sale'],

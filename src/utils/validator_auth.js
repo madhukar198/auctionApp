@@ -1,6 +1,5 @@
 const AppError = require("../utils/appError")
 const {validationResult} = require('express-validator');
-const catchAsync = require("../utils/catchAsync")
 
 
 module.exports = (req, res, next) => {
