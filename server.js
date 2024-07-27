@@ -11,18 +11,25 @@ const AppError = require("./src/utils/appError.js")
 const errorHandler = require("./src/utils/errorController.js")
 
 dotenv.config();
-connectUserDB();
-connectAuctionDB();
-connectBidersDB()
+
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+connectUserDB();
+connectAuctionDB();
+connectBidersDB()
+
 app.use('/api/users', userRoutes);
 app.use('/api/auctions', auctionRoutes);
 app.use('/api/bidd', biddingRoutes);
 // /api/users/register
+
+app.use((req, res, next) => {
+    next(new AppError(`can't find \'${req.originalUrl.toString().replace("/","")}\' API on the server.!`, 404 ));
+});
+
 app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000;

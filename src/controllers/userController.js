@@ -1,5 +1,4 @@
-// const User = require('../models/User');
-// const initModels = require('../models/index');
+
 const jwt = require('jsonwebtoken');
 
 

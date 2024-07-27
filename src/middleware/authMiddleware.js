@@ -11,9 +11,6 @@ const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET
 
 
 const generateToken = (id)=>{
-
-  console.log("JWT_ACCESS_SECRET==>",JWT_ACCESS_SECRET);
-  console.log("JWT_REFRESH_SECRET==>",JWT_REFRESH_SECRET);
   
   const accessToken = jwt.sign({ id}, JWT_ACCESS_SECRET, { expiresIn: '1h' });
   const refreshToken = jwt.sign({ id }, JWT_REFRESH_SECRET, { expiresIn: '1d' });
@@ -27,9 +24,7 @@ const generateNewToken = async (req, res, next) => {
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
       token = req.headers.authorization.split(' ')[1];
-      console.log("token -->",token );
       const decoded = jwt.verify(token, JWT_REFRESH_SECRET);
-      console.log("decoded-->",decoded);
       const { User } = await initModels();
       let userData = await User.findById(decoded.id).select('-password');
 
@@ -41,10 +36,8 @@ const generateNewToken = async (req, res, next) => {
 
       let generateNewToken = generateToken(id)
       return response(res, `New Token Generated Successfully..!`, generateNewToken);
-      
-      next();
+
     } catch (error) {
-      // res.status(401).json({ message: 'Not authorized, token failed' });
       return next(new AppError('Not authorized, token failed', 400));
     }
   }

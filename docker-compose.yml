@@ -1,0 +1,16 @@
+services:
+  auctionDB:
+    image: 'mongo'
+    volumes:
+      - auction_data:/data/db
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Specify the Dockerfile if it's not named Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auctionDB
+
+volumes:
+  auction_data:
